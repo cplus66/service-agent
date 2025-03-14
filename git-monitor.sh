@@ -17,6 +17,6 @@ echo
 
 docker ps | grep gitweb
 if [ $? -ne 0 ]; then
-  BODY="$(date)"
+  BODY="$(cat $LOG)"
   $SERVICE_HOME/aws-ses-sendmail.sh $TO "${SUBJECT}" "${BODY}"
 fi
