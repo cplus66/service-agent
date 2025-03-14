@@ -1,0 +1,35 @@
+#!/bin/bash
+# Date: Mar 14, 2025
+# Author: cplus.shen@gmail.com
+# Description: monitoring web services
+
+SERVICE_HOME=$(dirname $0)
+LOG=$SERVICE_HOME/log/webservice.log
+mkdir -p $SERVICE_HOME/log
+rm -f $LOG
+
+TO=cplus.shen@gmail.com
+SUBJECT='[service-agent] Out of web services'
+RET=0
+LIST="
+http://172.17.5.219:8080/login
+http://172.17.4.253:8081/
+http://172.17.22.238/cgi-bin/twiki/view/Main/WebHome
+"
+
+exec &> >(tee -a "$LOG")
+date
+echo
+
+for i in $LIST; do
+  curl -s --head  --request GET $i | grep "200 OK" > /dev/null
+  if [ $? -ne 0 ]; then
+    echo "ERR,$i"
+    RET=1
+  fi
+done
+
+if [ $RET -eq 1 ]; then
+  BODY="$(cat $LOG)"
+  $SERVICE_HOME/aws-ses-sendmail.sh $TO "${SUBJECT}" "${BODY}"
+fi

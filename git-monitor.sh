@@ -11,7 +11,7 @@ rm -f $LOG
 TO=cplus.shen@gmail.com
 SUBJECT='[service-agent] Git Out of service'
 
-exec &> >(tee "$LOG")
+exec &> >(tee -a "$LOG")
 date
 echo
 
