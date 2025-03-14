@@ -6,11 +6,12 @@
 SERVICE_HOME=$(dirname $0)
 LOG=$SERVICE_HOME/log/git.log
 mkdir -p $SERVICE_HOME/log
+rm -f $LOG
 
 TO=cplus.shen@gmail.com
-SUBJECT="Git Out of service"
+SUBJECT='[service-agent] Git Out of service'
 
-exec &> >(tee -a "$LOG")
+exec &> >(tee "$LOG")
 date
 echo
 
