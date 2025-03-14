@@ -1,11 +1,16 @@
 #!/bin/bash
+# Date: Mar 14, 2025
+# Author: cplus.shen@gmail.com
+# Description: monitoring Docker git service
+
+SERVICE_HOME=$(dirname $0)
+LOG=$SERVICE_HOME/log/git.log
+mkdir -p $SERVICE_HOME/log
 
 TO=cplus.shen@gmail.com
 SUBJECT="Git Out of service"
-SERVICE_HOME=/home/cplus/service-agent
 
-OUTPUT=/dev/null
-exec &> >(tee -a "$OUTPUT")
+exec &> >(tee -a "$LOG")
 date
 echo
 
