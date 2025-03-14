@@ -3,9 +3,9 @@
 # Author: cplus.shen@gmail.com
 # Description: monitoring web services
 
-SERVICE_HOME=$(dirname $0)
-LOG=$SERVICE_HOME/log/webservice.log
-mkdir -p $SERVICE_HOME/log
+AGENT_HOME=$(dirname $0)
+LOG=$AGENT_HOME/log/webservice.log
+mkdir -p $AGENT_HOME/log
 rm -f $LOG
 
 TO=cplus.shen@gmail.com
@@ -31,5 +31,5 @@ done
 
 if [ $RET -eq 1 ]; then
   BODY="$(cat $LOG)"
-  $SERVICE_HOME/aws-ses-sendmail.sh $TO "${SUBJECT}" "${BODY}"
+  $AGENT_HOME/aws-ses-sendmail.sh $TO "${SUBJECT}" "${BODY}"
 fi
