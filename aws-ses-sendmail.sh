@@ -18,5 +18,5 @@ fi
 aws ses send-email \
     --from ${FROM} \
     --destination "ToAddresses=${TO}" \
-    --message "Subject={Data=Git is out of service},Body={Text={Data=This mail was sent with Amazon SES}}"
+    --message "Subject={Data=${SUBJECT}},Body={Text={Data=This mail was sent with Amazon SES}}"
 
