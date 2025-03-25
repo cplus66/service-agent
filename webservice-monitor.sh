@@ -11,6 +11,12 @@ rm -f $LOG
 TO=cplus.shen@gmail.com
 SUBJECT='[service-agent] Out of web services'
 RET=0
+
+# Gitweb
+# Jenkins
+# tftp
+# Twiki
+
 LIST="
 http://172.17.4.253:8081/
 http://172.17.5.219:8080/login
