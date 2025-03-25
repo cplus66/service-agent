@@ -12,8 +12,9 @@ TO=cplus.shen@gmail.com
 SUBJECT='[service-agent] Out of web services'
 RET=0
 LIST="
-http://172.17.5.219:8080/login
 http://172.17.4.253:8081/
+http://172.17.5.219:8080/login
+http://172.17.22.195/tftp/
 http://172.17.22.238/cgi-bin/twiki/view/Main/WebHome
 "
 
