@@ -19,9 +19,12 @@ RET=0
 
 LIST="
 http://172.17.4.253:8081/
+http://172.17.4.253:8082/
 http://172.17.5.219:8080/login
 http://172.17.22.195/tftp/
 http://172.17.22.238/cgi-bin/twiki/view/Main/WebHome
+https://172.17.4.45:5000/account/sign-in
+http://172.17.4.45:8080/login
 "
 
 exec &> >(tee -a "$LOG")
@@ -29,7 +32,7 @@ date
 echo
 
 for i in $LIST; do
-  curl -s --head  --request GET $i | grep "200 OK" > /dev/null
+  curl -s --head --insecure --request GET $i | grep "200 OK" > /dev/null
   if [ $? -ne 0 ]; then
     echo "ERR,$i"
     RET=1
